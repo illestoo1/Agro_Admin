@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Card from "../../../components/card";
+import Card from "../../../components/Card";
 
 const CardGrid = () => {
   const cards = [
@@ -44,11 +44,6 @@ const CardGrid = () => {
           />
         ))}
       </div>
-      <div>
-        
-      </div>
-
-
     </>
   );
 };
