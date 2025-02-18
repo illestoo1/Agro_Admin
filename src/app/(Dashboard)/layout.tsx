@@ -91,15 +91,15 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
       </header>
 
       {/* Sidebar with Framer Motion */}
-      <motion.nav
-        className={`w-full md:w-1/5 p-5 lg:block flex-col justify-between z-10 border-r h-full bg-[#F4FAFF] transition-transform transform ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0`} // Always visible on md screens
-        initial={{ x: "-100%" }} // Animation only for mobile
-        animate={{ x: isSidebarOpen ? "0%" : "-100%" }}
-        exit={{ x: "-100%" }}
-        transition={{ type: "spring", stiffness: 300 }}
-      >
+     <motion.nav
+  className={`w-full md:w-1/5 p-5 lg:block flex-col justify-between z-10 border-r h-full bg-[#F4FAFF] transition-transform transform ${
+    isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+  } md:translate-x-0`} // Always visible on md screens
+  initial={{ x: "-100%" }} // Animation only for mobile
+  animate={{ x: isSidebarOpen ? "0%" : "-100%" }}
+  exit={{ x: "-100%" }}
+  transition={{ type: "spring", stiffness: 300 }}
+>
         <div className="flex items-center justify-center p-2">
           <Image alt="logo" width={100} height={100} src="/image/Logo.svg" />
         </div>
