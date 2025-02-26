@@ -55,6 +55,7 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
       label: "Financess",
       svgPath: "M17 8h1v11H2V8h1V6c0-2.76 2.24-5 5-5c.71 0 1.39.15...",
     },
+    
   ];
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
@@ -67,7 +68,7 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
   return (
     <div className="h-screen flex flex-col md:flex-row">
       {/* Mobile Header with Hamburger */}
-      <header className="md:hidden flex items-center justify-between p-4 bg-[#F4FAFF] border-b shadow-sm">
+      <header className="flex items-center w-1/5 justify-between p-4 border-b shadow-sm">
         <button
           onClick={toggleSidebar}
           className="p-2 text-gray-600 hover:text-gray-800 focus:outline-none"
@@ -92,14 +93,14 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
 
       {/* Sidebar with Framer Motion */}
      <motion.nav
-  className={`w-full md:w-1/5 p-5 lg:block flex-col justify-between z-10 border-r h-full bg-[#F4FAFF] transition-transform transform ${
-    isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-  } md:translate-x-0`} // Always visible on md screens
-  initial={{ x: "-100%" }} // Animation only for mobile
-  animate={{ x: isSidebarOpen ? "0%" : "-100%" }}
-  exit={{ x: "-100%" }}
-  transition={{ type: "spring", stiffness: 300 }}
->
+        className={`w-full md:w-1/5 p-5 lg:block fixed flex-col justify-between z-10 border-r h-full bg-[#F4FAFF] transition-transform transform ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } md:translate-x-0`} // Always visible on md screens
+        initial={{ x: "-100%" }} // Animation only for mobile
+        animate={{ x: isSidebarOpen ? "0%" : "-100%" }}
+        exit={{ x: "-100%" }}
+        transition={{ type: "spring", stiffness: 30 }}
+      >
         <div className="flex items-center justify-center p-2">
           <Image alt="logo" width={100} height={100} src="/image/Logo.svg" />
         </div>
