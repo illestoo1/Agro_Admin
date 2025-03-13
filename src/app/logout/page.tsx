@@ -1,73 +1,110 @@
-import React from "react";
+"use client";
 import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
+import { Icon } from "@iconify/react";
 
-const Login = () => {
+export default function LoginPage() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log({ email, password, rememberMe });
+  };
+
   return (
-    <div className="flex min-h-screen">
-      {/* Left side - Company Logo */}
-      <div className="w-1/2 bg-[#F4FAFF] flex justify-center items-center">
-        <Image
-          alt="logo"
-          src="/image/Logo.svg"
-          width={200} // Adjust the width
-          height={200}
-        />
-      </div>
-
-      {/* Right side - Login Form */}
-      <div className="w-1/2 flex justify-center items-center bg-[#86B159]">
-        <div className="w-80 bg-white p-8 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-semibold mb-6 text-center">
-            Admin Login
-          </h2>
-          <form>
-            <div className="mb-4">
-              <label
-                htmlFor="username"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Username
-              </label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                className="w-full p-2 mt-2 border border-gray-300 rounded-lg"
-                required
-              />
-            </div>
-
-            <div className="mb-6">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                className="w-full p-2 mt-2 border border-gray-300 rounded-lg"
-                required
-              />
-            </div>
-
-            {/* Link to Home Page */}
-            <Link href="/" passHref>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="justify-center bg-[#F4FAFF] shadow-lg rounded-2xl flex overflow-hidden w-full max-w-4xl">
+        {/* Left Side - Form Section */}
+        <div className="w-full md:w-1/2 flex items-center justify-center p-8">
+          <div className="w-full max-w-sm">
+            <Image
+              src="/image/Logo.svg"
+              alt="Logo"
+              width={100}
+              height={100}
+              className="mx-auto mb-6"
+            />
+            <h2 className="text-2xl font-bold mb-6 text-center">Welcome</h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="relative">
+                <Icon
+                  icon="mdi:email"
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                  width="20"
+                />
+                <input
+                  type="email"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#86B159]"
+                />
+              </div>
+              <div className="relative">
+                <Icon
+                  icon="mdi:lock"
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                  width="20"
+                />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="w-full pl-10 pr-10 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#86B159]"
+                />
+                <span
+                  onClick={togglePasswordVisibility}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500"
+                >
+                  <Icon
+                    icon={showPassword ? "mdi:eye-off" : "mdi:eye"}
+                    width="20"
+                  />
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <label className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={() => setRememberMe(!rememberMe)}
+                    className="accent-[#86B159]"
+                  />
+                  <span className="text-sm text-gray-600">Remember me</span>
+                </label>
+                <a href="#" className="text-[#86B159] text-sm">
+                  Forgotten password?
+                </a>
+              </div>
               <button
-                type="button"
-                className="w-full py-2 bg-[#86B159] text-white font-semibold rounded-lg hover:bg-[#F4FAFF] hover:text-[#86B159]"
+                type="submit"
+                className="w-full py-2 px-4 bg-[#86B159] text-white hover:text-[#86B159] rounded-lg hover:bg-gray-500 transition"
               >
                 Login
               </button>
-            </Link>
-          </form>
+            </form>
+          </div>
+        </div>
+
+        {/* Right Side - Image Section */}
+        <div className="w-1/2 hidden md:block">
+          <Image
+            src="/image/asset 1.jpg"
+            alt="Visual"
+            width={600}
+            height={800}
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
     </div>
   );
-};
-
-export default Login;
+}

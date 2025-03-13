@@ -15,7 +15,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ title, icon, percentage, unit }) => {
   return (
-    <div className="p-4 sm:p-6 h-[300px] md:h-[200px] bg-[#86B159] rounded-lg flex flex-col justify-between hover:shadow-lg transition-shadow duration-300">
+    <div className="p-4 sm:p-6 h-[300px] md:h-[200px] bg-[#86B159] rounded-lg flex flex-col justify-between shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out">
       {/* Icon and Title */}
       <div className="flex justify-between items-center">
         <span className="text-lg sm:text-xl font-semibold text-white truncate">
