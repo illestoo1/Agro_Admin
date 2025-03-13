@@ -74,7 +74,7 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Sidebar */}
-      <nav className={`w-full md:w-1/5 p-5 lg:block ${isOpen ? 'block' : 'hidden'} flex-col justify-between z-10 border-r h-full bg-[#F4FAFF] transition-all duration-300`}>
+      <nav className={`w-full md:w-1/5 p-5 lg:block ${isOpen ? 'block' : 'hidden'} flex-col justify-between z-10 border-r h-full bg-[#F4FAFF] transition-width duration-300`}>
         <div className="flex items-center justify-center p-2">
           <Image alt="logo" width={100} height={100} src="/image/Logo.svg" />
         </div>
