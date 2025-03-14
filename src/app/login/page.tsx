@@ -20,7 +20,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="justify-center bg-[#F4FAFF] shadow-lg rounded-2xl flex overflow-hidden w-full max-w-4xl">
         {/* Left Side - Form Section */}
-        <div className="w-full md:w-1/2 flex items-center justify-center p-8">
+        <div className="w-full md:w-1/2 flex items-center justify-center p-8 space-y-4">
           <div className="w-full max-w-sm">
             <Image
               src="/image/Logo.svg"
@@ -29,7 +29,8 @@ export default function LoginPage() {
               height={100}
               className="mx-auto mb-6"
             />
-            <h2 className="text-2xl font-bold mb-6 text-center">Welcome</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+            
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="relative">
                 <Icon
@@ -80,7 +81,6 @@ export default function LoginPage() {
                   />
                   <span className="text-sm text-gray-600">Remember me</span>
                 </label>
-              
               </div>
               <button
                 type="submit"

@@ -67,7 +67,7 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
   return (
     <div className="h-screen flex flex-col text-sm md:flex-row">
       {/* Burger Menu */}
-      <div id="burger menu" className="lg:hidden block" onClick={toggleSidebar}>
+      <div id="burger menu" className="lg:hidden block" onClick={toggleSidebar} >
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
           <path fill="currentColor" d="M3 18v-2h18v2zm0-5v-2h18v2zm0-5V6h18v2z"/>
         </svg>
