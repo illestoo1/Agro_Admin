@@ -2,18 +2,44 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
+import { auth } from "@/lib/services/auth";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ email, password, rememberMe });
+    setLoading(true);
+    setError(null);
+
+    try {
+      const loginData = {
+        email,
+        password,
+      }; 
+      const response = await auth.login(loginData);
+
+      console.log("Login Success:", response);
+
+      // Store token in localStorage for authentication
+      localStorage.setItem("token", response.token);
+
+      // Redirect user after login
+      window.location.href = "/";
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err:any) {
+      console.log(err)
+      setError(err.response?.data?.message || "Invalid email or password");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -30,7 +56,9 @@ export default function LoginPage() {
               className="mx-auto mb-6"
             />
             <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-            
+
+            {error && <p className="text-red-500 text-center">{error}</p>}
+
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="relative">
                 <Icon
@@ -40,7 +68,7 @@ export default function LoginPage() {
                 />
                 <input
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder="you@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -84,9 +112,10 @@ export default function LoginPage() {
               </div>
               <button
                 type="submit"
+                disabled={loading}
                 className="w-full py-2 px-4 bg-[#86B159] text-white hover:text-[#86B159] rounded-lg hover:bg-gray-500 transition"
               >
-                Login
+                {loading ? "Logging in..." : "Login"}
               </button>
             </form>
           </div>
