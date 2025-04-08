@@ -1,6 +1,9 @@
 "use client";
 import React from "react";
 import Card from "../../../components/Card";
+import SalesOverview from "../../../components/SalesOverview";
+import ProductPerformance from "../../../components/ProductPerformance";
+
 
 const CardGrid = () => {
   const cards = [
@@ -44,6 +47,14 @@ const CardGrid = () => {
           />
         ))}
       </div>
+
+      <main className="p-6">
+        <SalesOverview />
+      </main>
+
+      <main className="p-6">
+        <ProductPerformance />
+      </main>
     </>
   );
 };

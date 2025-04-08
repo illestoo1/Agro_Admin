@@ -143,7 +143,7 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
                   <path d="M20.5 12l-3.5-3.5M20.5 12l-3.5 3.5" />
                 </g>
               </svg>
-              <Link href="login">
+              <Link href="/login">
               <button>Logout</button>
               </Link>  
             </div>
