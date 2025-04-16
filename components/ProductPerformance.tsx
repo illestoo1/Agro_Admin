@@ -14,51 +14,51 @@ import {
 const data = [
   {
     day: "Mon",
-    maize: 150,
+    diary: 150,
     vegetables: 120,
-    yam: 90,
+    poultry: 90,
     inventory: 700,
   },
   {
     day: "Tue",
-    maize: 180,
+    diary: 180,
     vegetables: 130,
-    yam: 100,
+    poultry: 100,
     inventory: 650,
   },
   {
     day: "Wed",
-    maize: 160,
+    diary: 160,
     vegetables: 140,
-    yam: 105,
+    poultry: 105,
     inventory: 600,
   },
   {
     day: "Thu",
-    maize: 200,
+    diary: 200,
     vegetables: 160,
-    yam: 95,
+    poultry: 95,
     inventory: 550,
   },
   {
     day: "Fri",
-    maize: 220,
+    diary: 220,
     vegetables: 180,
-    yam: 130,
+    poultry: 130,
     inventory: 500,
   },
   {
     day: "Sat",
-    maize: 240,
+    diary: 240,
     vegetables: 210,
-    yam: 140,
+    poultry: 140,
     inventory: 450,
   },
   {
     day: "Sun",
-    maize: 190,
+    diary: 190,
     vegetables: 160,
-    yam: 120,
+    poultry: 120,
     inventory: 400,
   },
 ];
@@ -66,7 +66,7 @@ const data = [
 export default function ProductPerformance() {
   return (
     <div className="bg-white rounded-2xl shadow-md p-6 w-full max-w-5xl">
-      <h2 className="text-lg font-semibold text-gray-800 mb-4">
+      <h2 className="text-lg font-semibold text-gray-800 mb-4 p-4">
         Product Performance
       </h2>
       <ResponsiveContainer width="100%" height={320}>
@@ -81,9 +81,9 @@ export default function ProductPerformance() {
           <Legend />
           <Line
             type="monotone"
-            dataKey="maize"
+            dataKey="diary"
             stroke="#86B159"
-            name="Maize Sales"
+            name="Diary Sales"
             strokeWidth={2}
           />
           <Line
@@ -95,9 +95,9 @@ export default function ProductPerformance() {
           />
           <Line
             type="monotone"
-            dataKey="yam"
+            dataKey="poultry"
             stroke="#4CAF50"
-            name="Yam Sales"
+            name="Poultry Sales"
             strokeWidth={2}
           />
           <Line

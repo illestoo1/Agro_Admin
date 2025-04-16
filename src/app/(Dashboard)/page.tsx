@@ -3,6 +3,7 @@ import React from "react";
 import Card from "../../../components/Card";
 import SalesOverview from "../../../components/SalesOverview";
 import ProductPerformance from "../../../components/ProductPerformance";
+import CommissionBarChart from "../../../components/CommissionBarChart";
 
 
 const CardGrid = () => {
@@ -34,7 +35,7 @@ const CardGrid = () => {
   ];
 
   return (
-    <>
+    <div className="">
       {/* Responsive Grid for Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 p-4 sm:p-6">
         {cards.map((card, index) => (
@@ -48,14 +49,16 @@ const CardGrid = () => {
         ))}
       </div>
 
-      <main className="p-6">
+      <main className=" p-6">
         <SalesOverview />
+
+        <ProductPerformance />
+
+        <CommissionBarChart />
       </main>
 
-      <main className="p-6">
-        <ProductPerformance />
-      </main>
-    </>
+      
+    </div>
   );
 };
 

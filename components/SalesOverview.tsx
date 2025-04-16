@@ -1,70 +1,93 @@
+// components/StackedBarChart.tsx
 "use client";
 
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
+  Chart as ChartJS,
+  BarElement,
+  CategoryScale,
+  LinearScale,
   Tooltip,
-  ResponsiveContainer,
   Legend,
-  CartesianGrid,
-} from "recharts";
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 
-const data = [
-  { day: "Mon", revenue: 125000, orders: 180, avgOrder: 694 },
-  { day: "Tue", revenue: 110500, orders: 160, avgOrder: 690 },
-  { day: "Wed", revenue: 135400, orders: 195, avgOrder: 694 },
-  { day: "Thu", revenue: 100200, orders: 145, avgOrder: 691 },
-  { day: "Fri", revenue: 148300, orders: 215, avgOrder: 690 },
-  { day: "Sat", revenue: 170000, orders: 240, avgOrder: 708 },
-  { day: "Sun", revenue: 98000, orders: 140, avgOrder: 700 },
-];
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-export default function SalesOverview() {
+const StackedBarChart = () => {
+  const data = {
+    labels: ["Vendor A", "Vendor B", "Vendor C", "Vendor D"],
+    datasets: [
+      {
+        label: "Grains",
+        data: [10000, 7000, 4500, 6000],
+        backgroundColor: "#86B159", // Green
+      },
+      {
+        label: "Vegetables",
+        data: [5000, 4000, 2500, 3000],
+        backgroundColor: "#4B9CD3", // Blue
+      },
+      {
+        label: "Fruits",
+        data: [3000, 2000, 1500, 1800],
+        backgroundColor: "#F4A259", // Orange
+      },
+      {
+        label: "Livestock",
+        data: [8000, 5000, 3500, 4000],
+        backgroundColor: "#A3A1FB", // Purple
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top" as const,
+        labels: {
+          color: "#374151", // gray-700
+        },
+      },
+      tooltip: {
+        callbacks: {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          label: function (context: any) {
+            return `${
+              context.dataset.label
+            }: $${context.parsed.y.toLocaleString()}`;
+          },
+        },
+      },
+    },
+    scales: {
+      x: {
+        type: "category" as const,
+        stacked: true,
+        ticks: {
+          color: "#6B7280", // gray-500
+        },
+      },
+      y: {
+        type: "linear" as const,
+        stacked: true,
+        ticks: {
+          beginAtZero: true,
+          color: "#6B7280",
+          callback: (value: number) => `$${value / 1000}k`,
+        },
+      },
+    },
+  };
+
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6 w-full max-w-5xl">
-      <h2 className="text-lg font-semibold text-gray-800">
-         Sales Overview
+    <div className="bg-white  rounded-2xl shadow-md max-w-4xl w-full">
+      <h2 className="text-lg font-semibold text-gray-700 mb-4 p-4">
+        Monthly Revenue per Vendor 
       </h2>
-      <ResponsiveContainer width="100%" height={320}>
-        <BarChart
-          data={data}
-          margin={{ top: 10, right: 30, left: 0, bottom: 5 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="day" />
-          <YAxis tickFormatter={(value) => `₦${(value / 1000).toFixed(0)}k`} />
-          <Tooltip
-            formatter={(value: number, name: string) => {
-              if (name === "revenue")
-                return [`₦${value.toLocaleString()}`, "Revenue"];
-              if (name === "avgOrder")
-                return [`₦${value.toLocaleString()}`, "Avg. Order"];
-              return [value, "Orders"];
-            }}
-          />
-          <Legend />
-          <Bar
-            dataKey="revenue"
-            fill="#86B159"
-            name="Revenue"
-            radius={[4, 4, 0, 0]}
-          />
-          <Bar
-            dataKey="orders"
-            fill="#FFA500"
-            name="Orders"
-            radius={[4, 4, 0, 0]}
-          />
-          <Bar
-            dataKey="avgOrder"
-            fill="#4CAF50"
-            name="Avg. Order"
-            radius={[4, 4, 0, 0]}
-          />
-        </BarChart>
-      </ResponsiveContainer>
+      <Bar data={data} options={options} />
     </div>
   );
-}
+};
+
+export default StackedBarChart;
